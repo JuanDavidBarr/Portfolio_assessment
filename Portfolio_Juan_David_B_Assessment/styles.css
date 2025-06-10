@@ -1,0 +1,162 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+:root{
+    --main-color: #8ecae6;
+    --secondary-color:#023047;
+    --main-font:"Sour Gummy", sans-serif;
+    --secondary-font: "Chelsea Market", system-ui;
+    --hover-color:#fb8500;
+}
+/* Se establece el body como una grid para editar la disposición de los elementos de la página.*/
+.grid-container{
+    height: 100vh;
+    display: grid;
+    grid-template:
+        "header" 5rem
+        "navbar" 3rem
+        "main" auto
+        "footer" 5rem
+}
+.grid-container__header, .grid-container__navbar, .grid-container__main, .grid-container__footer{
+    border: 1px solid black;
+}
+/* a cada sección semántica principal (main, header, footer, etc...) se le atribuye un nombre con la propiedad "grid-area" para poder así establecer el layout con la propiedad "grid-template" utilizada en la parte superior.*/
+.grid-container__header{
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color);
+}
+.header__heading{
+    font-family: var(--secondary-font);
+    font-weight: 100;
+    text-align: center;
+    color: antiquewhite;
+}
+.grid-container__navbar{
+    grid-area: navbar;
+}
+.navbar__list{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+/* En esta sección se utiliza flexbox en lugar para organizar la disposición interna de los elementos de la lista.*/
+.list__item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    list-style: none;
+    background-color: var(--secondary-color);
+    font-family: var(--secondary-font);
+}
+/* Pseudoclase hover para agregar efectos.*/
+.list__item:hover{
+    background-color: var(--hover-color);
+    color: black;
+}
+.item__link{
+    color: antiquewhite;
+    text-decoration: none;
+}
+.grid-container__main{
+    grid-area: main;
+    background-color: var(--main-color);
+}
+/* Se retoma grid para organizar los elementos dentro de la sección "main" se realiza otro método ya que la dispodición es más simple */
+.main__cards-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1rem;
+    padding: .2rem;
+}
+/* Se retoma flex para organizar los elementos dentro de la "carta"*/
+.cards-container__card{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    border: 1px  black;
+    box-shadow: 0 0 10px;
+    font-family: var(--main-font);
+    padding: .4rem;
+}
+.cards-container__card:hover{
+    box-shadow: 0 0 20px var(--hover-color);
+
+}
+.card__image{
+    width: 20rem;
+}
+.card__text{
+    text-align: center;
+    font-family: var(--main-font);
+}
+.card__button{
+    width: 5rem;
+    height: 2rem;
+    border: none;
+    background-color: var(--secondary-color);
+    transition: 1s;
+    border-radius: 0.5rem;
+}
+
+.card__link{
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.card__button:hover{
+    transform: scale(1.2);
+}
+
+
+.grid-container__footer{
+    grid-area:footer;
+    background-color: var(--secondary-color);
+    color: antiquewhite;
+    font-family: var(--secondary-font);
+}
+
+.footer__information{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Se implementan cambios por medio de "media query" para hacer la página responsiva para 3 tipos de tamaño */
+@media (min-width:768px){
+    .grid-container{
+        height: 100vh;
+        display: grid;
+        grid-template:
+            "header navbar" 5rem
+            "header navbar" 5rem
+            "main main" auto
+            "footer footer" 10rem
+    }
+}
+
+@media (min-width:1024px){
+    .grid-container{
+        min-height: 100vh;
+        display: grid;
+        grid-template:
+            "header navbar navbar" 2.5rem
+            "header navbar navbar" 2.5rem
+            "main main main" auto
+            "footer footer footer" 5rem
+    }
+}
+
+/*El resto de páginas comparten la misma estructura base, por lo que los comentarios serían prácticamente los mismos*/
+
